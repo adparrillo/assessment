@@ -32,7 +32,6 @@
     line-height: 1.6;
   }
 
-  /* ── HEADER ── */
   header {
     background: var(--navy-deep);
     padding: 0 48px;
@@ -63,7 +62,6 @@
     text-transform: uppercase;
   }
 
-  /* ── PROGRESS BAR ── */
   .progress-bar {
     background: var(--navy);
     height: 3px;
@@ -78,14 +76,12 @@
     transition: width 0.5s ease;
   }
 
-  /* ── MAIN LAYOUT ── */
   .container {
     max-width: 760px;
     margin: 0 auto;
     padding: 64px 32px 120px;
   }
 
-  /* ── PHASE HEADER ── */
   .phase-label {
     font-size: 11px;
     letter-spacing: 0.18em;
@@ -112,7 +108,6 @@
     margin-bottom: 48px;
   }
 
-  /* ── CARDS ── */
   .card {
     background: var(--white);
     border: 1px solid var(--border);
@@ -154,7 +149,6 @@
     font-style: italic;
   }
 
-  /* ── FORM ELEMENTS ── */
   .field-group { margin-bottom: 24px; }
 
   .field-label {
@@ -201,7 +195,6 @@
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-  /* ── CHOICE BUTTONS ── */
   .choice-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -254,7 +247,6 @@
     line-height: 1.5;
   }
 
-  /* ── SLIDER ── */
   .slider-container { margin-top: 8px; }
 
   .slider-labels {
@@ -298,7 +290,6 @@
     margin-top: 12px;
   }
 
-  /* ── SCENARIO CARD ── */
   .scenario {
     background: linear-gradient(135deg, var(--navy-deep), var(--navy));
     border-radius: 4px;
@@ -327,7 +318,6 @@
     margin: 12px 0 4px;
   }
 
-  /* ── NAVIGATION ── */
   .nav-bar {
     position: fixed;
     bottom: 0;
@@ -396,7 +386,6 @@
     background: var(--cream);
   }
 
-  /* ── RESULTS ── */
   .results-header {
     background: var(--navy-deep);
     padding: 56px 48px;
@@ -652,18 +641,12 @@
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// STATE
-// ═══════════════════════════════════════════════════════
 const state = {
   step: 0,
   data: {},
   riskAnswers: {}
 };
 
-// ═══════════════════════════════════════════════════════
-// STEPS DEFINITION
-// ═══════════════════════════════════════════════════════
 const STEPS = [
   'welcome',
   'profile',
@@ -677,9 +660,6 @@ const STEPS = [
   'results'
 ];
 
-// ═══════════════════════════════════════════════════════
-// RENDER ENGINE
-// ═══════════════════════════════════════════════════════
 function render() {
   const step = STEPS[state.step];
   const total = STEPS.length - 1;
@@ -718,10 +698,8 @@ function render() {
     case 'results':    container.innerHTML = renderResults(); initResults(); break;
   }
 
-  // Restore saved values
   restoreInputs();
 
-  // Attach slider listeners
   document.querySelectorAll('input[type="range"]').forEach(s => {
     updateSlider(s);
     s.addEventListener('input', () => updateSlider(s));
@@ -730,9 +708,6 @@ function render() {
   window.scrollTo(0,0);
 }
 
-// ═══════════════════════════════════════════════════════
-// WELCOME
-// ═══════════════════════════════════════════════════════
 function renderWelcome() {
   return `
   <div class="phase-label">Parrillo Investors — Investor Assessment</div>
@@ -761,9 +736,6 @@ function feature(n, title, desc) {
   </div>`;
 }
 
-// ═══════════════════════════════════════════════════════
-// PROFILE
-// ═══════════════════════════════════════════════════════
 function renderProfile() {
   return `
   <div class="phase-label">Section 1 of 4 — Personal Profile</div>
@@ -823,9 +795,6 @@ function renderProfile() {
   `;
 }
 
-// ═══════════════════════════════════════════════════════
-// FINANCIAL
-// ═══════════════════════════════════════════════════════
 function renderFinancial() {
   return `
   <div class="phase-label">Section 2 of 4 — Financial Picture</div>
@@ -894,9 +863,6 @@ function renderFinancial() {
   `;
 }
 
-// ═══════════════════════════════════════════════════════
-// OBJECTIVES
-// ═══════════════════════════════════════════════════════
 function renderObjectives() {
   const obj = state.data.primaryObjective || '';
   const liq = state.data.liquidityNeeds || '';
@@ -956,9 +922,6 @@ function liqBtn(val, label, desc, current, key='liquidityNeeds') {
   </button>`;
 }
 
-// ═══════════════════════════════════════════════════════
-// RISK QUESTIONS 1–5
-// ═══════════════════════════════════════════════════════
 function renderRisk1() {
   const a = state.riskAnswers;
   return `
@@ -1111,12 +1074,12 @@ function renderRisk4() {
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px;">
         <div>
           <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-light); margin-bottom: 4px;">After 10 Years</div>
-          <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; color: white;">$163,858</div>
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; color: white;">$187,422</div>
           <div style="font-size: 12px; color: rgba(255,255,255,0.6);">lost to 1% annual fee</div>
         </div>
         <div>
           <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-light); margin-bottom: 4px;">After 20 Years</div>
-          <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; color: white;">$662,549</div>
+          <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; color: white;">$702,248</div>
           <div style="font-size: 12px; color: rgba(255,255,255,0.6);">lost to 1% annual fee</div>
         </div>
       </div>
@@ -1174,9 +1137,6 @@ function renderRisk5() {
   `;
 }
 
-// ═══════════════════════════════════════════════════════
-// RESULTS
-// ═══════════════════════════════════════════════════════
 function renderResults() {
   return `<div id="resultsContent"><div style="text-align:center;padding:80px 0;color:var(--text-light);">Generating your assessment...</div></div>`;
 }
@@ -1355,7 +1315,7 @@ function initResults() {
 
       <p style="margin-bottom: 12px;"><strong style="color: var(--text);">Hypothetical performance and projections.</strong> The six-month outcome projections shown in this assessment are hypothetical, generated by an automated interactive analysis tool, and do not represent actual investment results, past performance of any specific portfolio, or a prediction of future results. They are based on historical blended asset class return distributions (1974–2024) applied to six risk tiers using a normal distribution approximation over a six-month horizon. Results vary with each use. Actual results will differ, potentially materially, based on specific holdings, market conditions, taxes, fees, and individual circumstances. Past performance is not indicative of future results. This tool is provided pursuant to Rule 206(4)-1(d)(2)(ii) of the Investment Advisers Act of 1940.</p>
 
-      <p style="margin-bottom: 12px;"><strong style="color: var(--text);">Fee analysis assumptions.</strong> The cumulative fee impact figures shown in this assessment are hypothetical illustrations based on a specified starting portfolio value, a 7% gross annual return assumption, a 1% AUM advisory fee, and the stated time horizon. They do not account for taxes, inflation, varying returns, or the potential value of advisory services. A fixed-fee advisory arrangement, such as that offered by Parrillo Investors LLC, may cost more on a percentage basis than a 1% AUM fee for investors with smaller portfolios or those requiring frequent ongoing advice. The fee comparison is intended to illustrate the mathematical compounding effect of percentage-based fees over time, not to represent the outcome of any specific investment program.</p>
+      <p style="margin-bottom: 12px;"><strong style="color: var(--text);">Fee analysis assumptions.</strong> The cumulative fee impact figures shown in this assessment are hypothetical illustrations based on a specified starting portfolio value, a 7% gross annual return assumption, a 1% AUM advisory fee billed quarterly in advance, and the stated time horizon. They do not account for taxes, inflation, varying returns, or the potential value of advisory services. A fixed-fee advisory arrangement, such as that offered by Parrillo Investors LLC, may cost more on a percentage basis than a 1% AUM fee for investors with smaller portfolios or those requiring frequent ongoing advice. The fee comparison is intended to illustrate the mathematical compounding effect of percentage-based fees over time, not to represent the outcome of any specific investment program.</p>
 
       <p style="margin-bottom: 12px;"><strong style="color: var(--text);">Behavioral analysis.</strong> The behavioral profile generated by this assessment is based on responses to scenario-based questions derived from prospect theory research. It is an educational output, not a formal suitability determination, and it has not been validated against any specific external standard. Results may vary with each use.</p>
 
@@ -1363,10 +1323,8 @@ function initResults() {
     </div>
   `;
 
-  // Store PI score for interactive slider
   window._currentPiScore = profile.piScore;
 
-  // Animate slider gradient on load
   setTimeout(() => {
     const slider = document.getElementById('portfolioSlider');
     if (slider) updateSlider(slider);
@@ -1391,7 +1349,9 @@ function renderFeeTable(sizeKey) {
   const fee = 0.01;
 
   function feeImpact(years) {
-    const withFee = base * Math.pow(1 + r - fee, years);
+    const quarterlyFeeFactor = 1 - (fee / 4);
+    const netAnnualFactor = (1 + r) * Math.pow(quarterlyFeeFactor, 4);
+    const withFee = base * Math.pow(netAnnualFactor, years);
     const withoutFee = base * Math.pow(1 + r, years);
     return fmt(withoutFee - withFee);
   }
@@ -1411,63 +1371,45 @@ function renderFeeTable(sizeKey) {
   </div>`;
 }
 
-// ═══════════════════════════════════════════════════════
-// SCORING
-// ═══════════════════════════════════════════════════════
 function computeProfile() {
   const a = state.riskAnswers;
   let score = 5;
 
-  // Q1: certain gain preferred = risk averse in gains
   if (a.r1 === 'A') score -= 0.5;
   if (a.r1 === 'B') score += 0.5;
 
-  // Q2: risky loss preferred = risk seeking in losses (classic loss aversion)
   if (a.r2 === 'B') score += 0.5;
   if (a.r2 === 'A') score -= 0.5;
 
-  // Q3: drawdown threshold
   const drawdown = parseInt(a.r3_pct || 20);
   if (drawdown <= 10) score -= 1.5;
   else if (drawdown <= 20) score -= 0.5;
   else if (drawdown >= 35) score += 1.5;
   else score += 0.5;
 
-  // Q4: market decline response
   if (a.r4 === 'r4a') score -= 2;
   if (a.r4 === 'r4b') score -= 1;
   if (a.r4 === 'r4c') score += 0.5;
   if (a.r4 === 'r4d') score += 1.5;
 
-  // Q5a: reference point framing
   if (a.r5a === 'loss') score -= 0.5;
 
-  // Q5b: volatility preference
   if (a.r5b === 'safe') score -= 1;
   if (a.r5b === 'volatile') score += 1;
 
-  // Objective modifier
   const obj = state.data.primaryObjective;
   if (obj === 'growth') score += 0.5;
   if (obj === 'preservation') score -= 1.5;
   if (obj === 'income') score -= 0.5;
 
-  // Horizon modifier
   const h = state.data.horizon;
   if (h === 'under5') score -= 1;
   if (h === 'over20') score += 1;
 
   score = Math.max(1, Math.min(10, Math.round(score * 2) / 2));
 
-  // PI Score: map 1–10 internal score to 1–100 scale
-  // Calibrated so that:
-  //   Score 1  → PI ~5  (most conservative)
-  //   Score 5  → PI ~45 (moderate)
-  //   Score 7  → PI ~65 (moderately aggressive)
-  //   Score 10 → PI ~90 (most aggressive)
   const piScore = Math.round(Math.max(5, Math.min(95, (score - 1) * 9.5 + 5)));
 
-  // Loss aversion coefficient
   let la = 2.0;
   if (a.r1 === 'A' && a.r2 === 'B') la = 2.5;
   if (a.r1 === 'B' && a.r2 === 'A') la = 1.5;
@@ -1475,7 +1417,6 @@ function computeProfile() {
   if (a.r4 === 'r4d') la -= 0.5;
   la = Math.max(1.2, Math.min(3.5, la)).toFixed(1);
 
-  // Volatility band label derived from PI score
   let volatilityBand = '±8–14%';
   if (piScore <= 20) volatilityBand = '±2–6%';
   else if (piScore <= 35) volatilityBand = '±4–9%';
@@ -1484,7 +1425,6 @@ function computeProfile() {
   else if (piScore <= 80) volatilityBand = '±16–24%';
   else volatilityBand = '±22–32%';
 
-  // Label
   let label = 'Moderate';
   if (piScore <= 20) label = 'Conservative';
   else if (piScore <= 35) label = 'Moderately Conservative';
@@ -1492,13 +1432,11 @@ function computeProfile() {
   else if (piScore <= 70) label = 'Moderately Aggressive';
   else label = 'Aggressive';
 
-  // Keep alloc for IPS reference (not displayed as recommendation)
   const eq = Math.min(95, Math.max(15, Math.round(score * 9)));
   const fi = Math.min(75, Math.max(5, Math.round((10 - score) * 7)));
   const cash = score <= 3 ? 10 : score <= 5 ? 5 : 3;
   const alt = 100 - eq - fi - cash;
 
-  // Insights
   const insights = [];
 
   if (a.r1 === 'A' && a.r2 === 'B') {
@@ -1537,14 +1475,6 @@ function computeProfile() {
   };
 }
 
-// ═══════════════════════════════════════════════════════
-// PROBABILITY MODULE — Historical Asset Class Data
-// Based on 50-year rolling return distributions by risk tier
-// ═══════════════════════════════════════════════════════
-
-// Six risk tiers mapped to PI score ranges
-// Parameters: annualized mean return, annualized std deviation
-// Derived from historical blended portfolio data 1974–2024
 const RISK_TIERS = [
   { maxScore: 20,  label: 'Conservative',           mean: 0.042, std: 0.048 },
   { maxScore: 35,  label: 'Moderately Conservative', mean: 0.056, std: 0.076 },
@@ -1558,18 +1488,10 @@ function getTier(piScore) {
   return RISK_TIERS.find(t => piScore <= t.maxScore) || RISK_TIERS[RISK_TIERS.length - 1];
 }
 
-// Six-month outcome: convert annual params to 6-month
-// Normal approximation: mean_6m = mean/2, std_6m = std/sqrt(2)
 function sixMonthOutcomes(portfolio, piScore) {
   const tier = getTier(piScore);
   const m = tier.mean / 2;
   const s = tier.std / Math.sqrt(2);
-
-  // Z-scores for confidence levels
-  // 90th pct best case: z = +1.282
-  // 50th pct expected: z = 0
-  // 10th pct worst case: z = -1.282
-  // 5th pct stress case: z = -1.645
 
   return {
     tier: tier.label,
@@ -1594,7 +1516,6 @@ function fmtChange(n) {
 }
 
 function renderOutcomeTable(sizeKey, piScore) {
-  // Just the explanatory header — actual table is in renderOutcomeRows
   const tier = getTier(piScore);
   return `
   <div style="background: var(--navy-deep); border-radius: 4px; padding: 20px 28px; color: white; margin-bottom: 4px;">
@@ -1645,7 +1566,6 @@ function updateOutcomeTable(val) {
   const piScore = window._currentPiScore || 50;
   document.getElementById('sliderPortfolioAmt').textContent = fmtDollars(portfolio);
   document.getElementById('outcomeTableContainer').innerHTML = renderOutcomeRows(portfolio, piScore);
-  // Update slider gradient
   const slider = document.getElementById('portfolioSlider');
   if (slider) {
     const min = parseInt(slider.min), max = parseInt(slider.max);
@@ -1719,9 +1639,6 @@ function feeAwarenessLabel(r6) {
   }[r6] || 'Not specified';
 }
 
-// ═══════════════════════════════════════════════════════
-// OPT-IN CAPTURE
-// ═══════════════════════════════════════════════════════
 function submitOptin() {
   const name = document.getElementById('optinName').value.trim();
   const email = document.getElementById('optinEmail').value.trim();
@@ -1735,7 +1652,6 @@ function submitOptin() {
     return;
   }
 
-  // Build capture payload
   const profile = computeProfile();
   const payload = {
     timestamp: new Date().toISOString(),
@@ -1754,7 +1670,6 @@ function submitOptin() {
     feeAwareness: state.riskAnswers.r6 || ''
   };
 
-  // Submit to Web3Forms
   fetch('https://api.web3forms.com/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -1767,23 +1682,17 @@ function submitOptin() {
     })
   }).catch(err => console.error('Web3Forms error:', err));
 
-  // Show confirmation
   confirm.style.display = 'block';
   confirm.style.background = 'rgba(184,149,90,0.2)';
   confirm.style.color = 'var(--gold-light)';
   confirm.innerHTML = `Thank you, ${name || 'and thank you'}. Your report has been noted and we will be in touch shortly. To schedule your consultation directly, visit <a href="https://parrilloinvestors.com" target="_blank" style="color: var(--gold-light); text-decoration: underline;">parrilloinvestors.com</a>.`;
 
-  // Disable inputs
   document.getElementById('optinName').disabled = true;
   document.getElementById('optinEmail').disabled = true;
 }
 
-// ═══════════════════════════════════════════════════════
-// HELPERS
-// ═══════════════════════════════════════════════════════
 function selectChoice(key, val, btn) {
   state.data[key] = val;
-  // deselect siblings
   btn.closest('.choice-grid').querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   updateNextBtn();
@@ -1835,7 +1744,6 @@ function updateFallDisplay(val) {
 }
 
 function updateNextBtn() {
-  // Always allow progression — validation is gentle
   document.getElementById('btnNext').disabled = false;
 }
 
@@ -1870,8 +1778,8 @@ function feeInsight() {
   const fee = state.data.currentFee;
   if (fee === 'none' || fee === 'fixed') return 'No AUM fee currently paid. Total advisory cost to be determined by engagement terms.';
   if (fee === 'unknown') return 'Current fee structure not quantified. Advisor fee disclosure in dollar terms is recommended as first engagement step.';
-  if (fee === '0.75to1') return '0.75–1.0% AUM. On a $1M portfolio at 7% returns, this compounds to $497,000–$662,000 in cumulative fees over 20 years.';
-  if (fee === '1to1.5') return '1.0–1.5% AUM. On a $1M portfolio, this represents $662,000–$997,000 in cumulative 20-year cost — the most consequential single number in your financial life.';
+  if (fee === '0.75to1') return '0.75–1.0% AUM. On a $1M portfolio at 7% returns, this compounds to $539,485–$702,248 in cumulative fees over 20 years.';
+  if (fee === '1to1.5') return '1.0–1.5% AUM. On a $1M portfolio, this represents $702,248–$1,004,568 in cumulative 20-year cost — the most consequential single number in your financial life.';
   if (fee === 'over1.5') return 'Over 1.5% AUM. This fee level is extremely difficult to justify against net-of-fee, risk-adjusted returns relative to a passive benchmark.';
   return 'Advisory fee benchmark to be established at engagement initiation.';
 }
@@ -1886,9 +1794,6 @@ function portfolioBase(key) {
   }[key] || 1000000;
 }
 
-// ═══════════════════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════════════════
 function goNext() {
   if (state.step < STEPS.length - 1) {
     state.step++;
@@ -1903,9 +1808,6 @@ function goBack() {
   }
 }
 
-// ═══════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════
 render();
 </script>
 </body>
